@@ -35,7 +35,7 @@ For other systems refer to official [Poetry documentation](https://python-poetry
 
 ```sh
 poetry install --only=main
-``` 
+```
 
 ## For development
 ```

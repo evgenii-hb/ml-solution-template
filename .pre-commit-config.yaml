@@ -38,8 +38,3 @@ repos:
             --install-types,
             --non-interactive,
           ]
-  - repo: https://github.com/gitguardian/ggshield
-    rev: v1.14.3  # Update to latest version by running `pre-commit autoupdate`
-    hooks:
-      - id: ggshield
-        language: python

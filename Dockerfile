@@ -76,5 +76,3 @@ COPY tests ./tests
 # quicker install as runtime deps are already installed
 RUN poetry install --only=dev,test --compile
 CMD ["poetry", "run", "pytest", "-v"]
-
-

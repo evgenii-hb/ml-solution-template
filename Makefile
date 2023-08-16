@@ -15,7 +15,7 @@ build:
 	docker build --target production -t change_docker_image_name -t change_docker_image_name:3.11.4-slim .
 	docker build --target development -t change_docker_image_name:dev -t change_docker_image_name:3.11.4-slim-dev .
 	docker image list
-	
+
 clear_build_cache:
 	docker system prune -f
 
