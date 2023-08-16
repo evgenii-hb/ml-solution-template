@@ -1,0 +1,60 @@
+[tool.poetry]
+name = "change_lib_name"  # TEMPLATE: change name
+version = "0.1.0"  # TEMPLATE: change version if needed
+description = "General ML solution template"  # TEMPLATE: change description
+authors = ["Evgenii Brovkin <evgenii@mail.com>"]  # TEMPLATE: change authors
+license = "MIT License"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "~3.10"
+pandas = "^2.0.3"
+scikit-learn = "^1.3.0"
+imbalanced-learn = "^0.11.0"
+optuna = "^3.2.0"
+xgboost = "^1.7.6"
+tqdm = "^4.65.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+ruff = "^0.0.282"
+isort = "^5.12.0"
+mypy = "^1.4.1"
+pre-commit = "^3.3.3"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.0"
+coverage = "^7.2.7"
+
+[tool.poetry.group.jn.dependencies]
+notebook = "^7.0.1"
+seaborn = "^0.12.2"
+plotly = "^5.15.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 105
+target-version = ['py310']
+include = 'change_lib_name/.*\.py$' # all .py files
+
+[tool.ruff]
+line-length = 105
+target-version = 'py310'
+select = [
+    "E",  # pycodestyle
+    "F",  # pyflakes
+    "UP", # pyupgrade
+    "D",  # pydocstyle
+]
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401", "D104"]
+
+[tool.ruff.pydocstyle]
+convention = "numpy"
+
+[tool.mypy]
+files = '**/*.py'
+warn_unused_configs = true

@@ -1,0 +1,45 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0  # find out the latest version -> https://github.com/pre-commit/pre-commit-hooks/releases
+    hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=512"]  # 512 KB - Do not commit notebooks with output
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-toml
+      - id: end-of-file-fixer
+      - id: check-docstring-first
+      - id: detect-private-key
+  - repo: https://github.com/python-poetry/poetry
+    rev: 1.5.1
+    hooks:
+      - id: poetry-check
+  - repo: https://github.com/ambv/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+        language_version: python3.10
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: "v0.0.277"
+    hooks:
+      - id: ruff
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    # NOTE: This passes ALL files to `mypy`. mypy will cache these.
+    # However, we must ignore all missing imports, because pre-commit runs in a separate env
+    rev: "v1.1.1"
+    hooks:
+      - id: mypy
+        pass_filenames: false
+        args:
+          [
+            --config-file,
+            pyproject.toml,
+            --ignore-missing-imports,
+            --install-types,
+            --non-interactive,
+          ]
+  - repo: https://github.com/gitguardian/ggshield
+    rev: v1.14.3  # Update to latest version by running `pre-commit autoupdate`
+    hooks:
+      - id: ggshield
+        language: python

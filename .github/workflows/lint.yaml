@@ -1,0 +1,36 @@
+name: Black, ruff, mypy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+jobs:
+  linter_and_code_checks:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    - name: Set up Poetry
+      uses: Gr1N/setup-poetry@v8
+      with:
+        poetry-version: "1.5.1"
+
+    - name: Install dependencies, lint and check
+      run: |
+        poetry install --only=dev
+        poetry run black --check .
+        poetry run ruff .
+        poetry run mypy .
